@@ -43,7 +43,7 @@ public class PruebaUtilidades {
 			    }
 
 		    } else {
-		    	System.out.println();
+		    	System.out.println("Error: fichero no existe.");
 		      /*try {
 		        System.out.println("Reading properties file " + args[0]);
 		        myConexionDriverManager = new Utilidades(args[0]);
