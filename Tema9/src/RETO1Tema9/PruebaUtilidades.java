@@ -1,5 +1,6 @@
 package RETO1Tema9;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -20,33 +21,39 @@ public class PruebaUtilidades {
 	  * 4. Al ejecutar en Run as --> Run Configuration --> arguments --> Tema3\tema3\transparencias\mysql-properties.xml
 	  * 5. En mysql-properties.xml ir cambiando el nombre de la BD en los ejercicios seg�n la que queramos usar
 	  */
+	
+	final static String RUTA_XML = "mysql-properties.xml";
 	 public static void main(String[] args) {
 		    Utilidades myConexionDriverManager;
 		    Connection myConnection = null;
-		    if (args[0] == null) {
-		      System.err.println("Properties file not specified at command line");
-		      return;
+		    File fich = new File(RUTA_XML);
+		    
+		    if (fich.exists()) {
+			    try {
+			    	System.out.println("Reading properties file " + RUTA_XML);
+			        myConexionDriverManager = new Utilidades(RUTA_XML);
+				    myConnection = myConexionDriverManager.getConnection();   
+
+			    } catch (SQLException e) {
+			    	e.printStackTrace(System.err);
+			    } catch (Exception e) {
+			      e.printStackTrace(System.err);
+			    } finally {
+			      Utilidades.closeConnection(myConnection);
+			    }
+
 		    } else {
-		      try {
+		    	System.out.println();
+		      /*try {
 		        System.out.println("Reading properties file " + args[0]);
 		        myConexionDriverManager = new Utilidades(args[0]);
 		      } catch (Exception e) {
 		        System.err.println("Problem reading properties file " + args[0]);
 		        e.printStackTrace();
 		        return;
-		      }
-		    }
+		      }*/
+		    }//else
 
-		    try {
-		      myConnection = myConexionDriverManager.getConnection();   
-
-		    } catch (SQLException e) {
-		    	e.printStackTrace(System.err);
-		    } catch (Exception e) {
-		      e.printStackTrace(System.err);
-		    } finally {
-		      Utilidades.closeConnection(myConnection);
-		    }
 
 		  }
 
