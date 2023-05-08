@@ -23,40 +23,58 @@ public class PruebaUtilidades {
 	  */
 	
 	final static String RUTA_XML = "mysql-properties.xml";
-	 public static void main(String[] args) {
-		    Utilidades myConexionDriverManager;
-		    Connection myConnection = null;
-		    File fich = new File(RUTA_XML);
+	public static void main(String[] args) {
+		
+	    Utilidades myConexionDriverManager;
+	    Connection myConnection = null;
+	    File fileXML = new File(RUTA_XML);
+	    
+	    if (fileXML.exists()) {
+		    try {
+		    	System.out.println("Reading properties file " + RUTA_XML);
+		        myConexionDriverManager = new Utilidades(RUTA_XML);
+			    myConnection = myConexionDriverManager.getConnection();   
+
+		    } catch (SQLException e) {
+		    	System.out.println("Error accediendo a la base de datos.");
+		    	e.printStackTrace(System.err);
+		    } catch (Exception e) {
+		    	System.out.println("Problem reading properties file " + RUTA_XML);
+		    	e.printStackTrace(System.err);
+		    } finally {
+		      Utilidades.closeConnection(myConnection);
+		    }//finally
 		    
-		    if (fich.exists()) {
-			    try {
-			    	System.out.println("Reading properties file " + RUTA_XML);
-			        myConexionDriverManager = new Utilidades(RUTA_XML);
-				    myConnection = myConexionDriverManager.getConnection();   
+	    } else {
+	    	System.out.println("Error: fichero no existe.");
+	    }//else
+	    
+	}//main
+}//Prueba
 
-			    } catch (SQLException e) {
-			    	e.printStackTrace(System.err);
-			    } catch (Exception e) {
-			      e.printStackTrace(System.err);
-			    } finally {
-			      Utilidades.closeConnection(myConnection);
-			    }
+/*
+if (args[0] == null) {
+    System.err.println("Properties file not specified at command line");
+    return;
+  } else {
+    try {
+      System.out.println("Reading properties file " + args[0]);
+      myConexionDriverManager = new Utilidades(args[0]);
+    } catch (Exception e) {
+      System.err.println("Problem reading properties file " + args[0]);
+      e.printStackTrace();
+      return;
+    }
+  }
 
-		    } else {
-		    	System.out.println("Error: fichero no existe.");
-		      /*try {
-		        System.out.println("Reading properties file " + args[0]);
-		        myConexionDriverManager = new Utilidades(args[0]);
-		      } catch (Exception e) {
-		        System.err.println("Problem reading properties file " + args[0]);
-		        e.printStackTrace();
-		        return;
-		      }*/
-		    }//else
+  try {
+    myConnection = myConexionDriverManager.getConnection();   
 
-
-		  }
-
-}
-
-
+  } catch (SQLException e) {
+  	e.printStackTrace(System.err);
+  } catch (Exception e) {
+    e.printStackTrace(System.err);
+  } finally {
+    Utilidades.closeConnection(myConnection);
+  }
+*/
