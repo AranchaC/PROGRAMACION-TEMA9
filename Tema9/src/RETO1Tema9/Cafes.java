@@ -189,7 +189,8 @@ public class Cafes {
 		} 
 	}//buscarCafe
 	
-	/*public void insertarCafe (String nombre, int id, float precio, int ventas, int total) {
+	public void insertarCafe (String nombre, int id, float precio, 
+			int ventas, int total) {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
@@ -200,7 +201,12 @@ public class Cafes {
 			stmt.setFloat(3, precio);
 			stmt.setInt(4, ventas);
 			stmt.setInt(5, total);
-			
-		}
-	}*/
+			stmt.executeUpdate();
+			System.out.println("Café añadido: "+nombre);
+		}catch (IOException e) {
+			System.err.println(e.getMessage());
+		} catch (SQLException sqle) {
+			System.err.println(sqle.getMessage());
+		} 
+	}//insertarCafe
 }
