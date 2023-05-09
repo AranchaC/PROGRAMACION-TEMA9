@@ -170,7 +170,7 @@ public class Cafes {
 		} catch (SQLException sqle) {
 			System.err.println(sqle.getMessage());
 		} 
-	}//buscarCafe
+	}//buscarCafes
 	
 	public void borrarCafe (String cafe) {
 		Connection con = null;
