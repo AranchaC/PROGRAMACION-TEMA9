@@ -1,4 +1,6 @@
 package RETO1Tema9;
+//USUARIO SQL CLASE: arancha2
+//pass sql clase: arancha2*DAW
 
 import java.io.IOException;
 import java.sql.Connection;
