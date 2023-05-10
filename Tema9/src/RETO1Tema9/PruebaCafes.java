@@ -18,10 +18,10 @@ public class PruebaCafes {
 			System.out.println("\nContenido de la tabla CAFES:");
 			miCafe.verTabla();
 			//miCafe.actualizarVentasCafe("Colombian", 888);
-			//miCafe.buscarCafe("Colombian");
+			miCafe.buscarCafe("Colombian");
 			//miCafe.borrarCafe("Espresso");
-			miCafe.insertarCafe("Etiope", 150, 10, 0, 0);
-			miCafe.insertarCafe("Costa Rica", 101, 12, 0, 0);
+			//miCafe.insertarCafe("Etiope", 150, 10, 0, 0);
+			//miCafe.insertarCafe("Costa Rica", 101, 12, 0, 0);
 			
 	}
 }
