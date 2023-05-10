@@ -60,7 +60,7 @@ public class Utilidades1 {
 		this.serverName = this.prop.getProperty("server_name");
 		this.portNumber = Integer
 				.parseInt(this.prop.getProperty("port_number"));
-
+/*
 		System.out.println("Set the following properties:");
 		System.out.println("dbms: " + dbms);
 		System.out.println("driver: " + driver);
@@ -68,7 +68,7 @@ public class Utilidades1 {
 		System.out.println("userName: " + userName);
 		System.out.println("serverName: " + serverName);
 		System.out.println("portNumber: " + portNumber);
-
+*/
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class Utilidades1 {
 			conn = DriverManager.getConnection("jdbc:" + this.dbms + ":"
 					+ this.dbName + ";create=true", connectionProps);
 		}
-		System.out.println("Connectado a BD");
+		//System.out.println("Connectado a BD");
 		return conn;
 	}
 
@@ -112,7 +112,7 @@ public class Utilidades1 {
 	 * @param connArg
 	 */
 	public static void closeConnection(Connection connArg) {
-		System.out.println("Releasing all open resources ...");
+		//System.out.println("Releasing all open resources ...");
 		try {
 			if (connArg != null) {
 				connArg.close();

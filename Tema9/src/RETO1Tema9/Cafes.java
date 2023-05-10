@@ -88,8 +88,7 @@ public class Cafes {
 				// es error al liberar recursos
 			}
 		}
-
-	}
+	}//verTabla
 
 	/**
 	 * M�todo que actualiza las ventas de un caf� con un PreparedStatement
@@ -148,15 +147,22 @@ public class Cafes {
 	}//actualizarVentas
 	
 	public void buscarCafe(String cafe) {
-		Connection con = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		try {
-			con = new Utilidades1().getConnection();
-			stmt = con.prepareStatement(SEARCH_CAFE);
+		//Connection con = null;
+		//PreparedStatement stmt = null;
+		//ResultSet rs = null;
+		try (Connection con = new Utilidades1().getConnection()){
+			PreparedStatement stmt = con.prepareStatement(SEARCH_CAFE);
 			stmt.setString(1, cafe);
-			rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
+				System.out.println("Café encontrado: "+
+						rs.getString("CAF_NOMBRE")+", "+
+						rs.getInt("PROV_ID")+", "+
+						rs.getFloat("PRECIO")+", "+
+						rs.getInt("VENTAS")+", "+
+						rs.getInt("TOTAL")+", ");
+				
+				/*
 				String coffeeName = rs.getString("CAF_NOMBRE");
 				int supplierID = rs.getInt("PROV_ID");
 				float PRECIO = rs.getFloat("PRECIO");
@@ -164,8 +170,12 @@ public class Cafes {
 				int total = rs.getInt("TOTAL");
 				System.out.println("Encontrado: "+coffeeName + ", " +
 				supplierID + ", "+ PRECIO + ", " + VENTAS + ", " + total);
+				*/
 			}//if
-		}catch (IOException e) {
+			else {
+				System.out.println("No se encuentra el café: "+ cafe);
+			}
+		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		} catch (SQLException sqle) {
 			System.err.println(sqle.getMessage());
@@ -173,17 +183,11 @@ public class Cafes {
 	}//buscarCafes
 	
 	public void borrarCafe (String cafe) {
-		Connection con = null;
-		PreparedStatement stmt = null;
-		//ResultSet rs = null;
-		try {
-			con = new Utilidades1().getConnection();
-			stmt = con.prepareStatement(DELETE_CAFE);
-			//rs = stmt.executeQuery(cafe);
-			//String coffeeName = rs.getString("CAF_NOMBRE");
+		try (Connection con = new Utilidades1().getConnection()){
+			PreparedStatement stmt = con.prepareStatement(DELETE_CAFE);
 			stmt.setString(1, cafe);
 			stmt.executeUpdate();
-			System.out.println("Café borrado: "+cafe);;
+			System.out.println("Café borrado: "+cafe);
 		}catch (IOException e) {
 			System.err.println(e.getMessage());
 		} catch (SQLException sqle) {
@@ -193,11 +197,8 @@ public class Cafes {
 	
 	public void insertarCafe (String nombre, int id, float precio, 
 			int ventas, int total) {
-		Connection con = null;
-		PreparedStatement stmt = null;
-		try {
-			con = new Utilidades1().getConnection();
-			stmt = con.prepareStatement(INSERT_CAFE);
+		try (Connection con = new Utilidades1().getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(INSERT_CAFE);
 			stmt.setString(1, nombre);
 			stmt.setInt(2, id);
 			stmt.setFloat(3, precio);
