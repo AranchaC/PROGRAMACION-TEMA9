@@ -8,10 +8,10 @@ public class PruebaLibros {
 		System.out.println("Catálogo libros: ");
 		misLibros.verCatalogoAsc();
 		System.out.println();
-		/*misLibros.insertLibro(987, "Programar con Java", "Alfonso Jiménez", "Paraninfo", 384, 50);
+		//misLibros.insertLibro(987, "Programar con Java", "Alfonso Jiménez", "Paraninfo", 384, 50);
 		System.out.println();
-		System.out.println("Catálogo libros: ");*/
 		//misLibros.deleteLibro(987);
+		//System.out.println("Catálogo libros: ");
 		misLibros.updateCopias(15, 1725);
 		System.out.println("Catálogo actualizado: ");
 		misLibros.verCatalogoAsc();
