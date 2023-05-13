@@ -29,11 +29,13 @@ public class CafesReto2 {
 			"delete from CAFES where CAF_NOMBRE = ?";
 	private static final String INSERT_CAFE = 
 			"insert into CAFES VALUES (?, ?, ?, ?, ?)";
-	private static final String SEARCH_CAFE_PROV =
+	/*private static final String SEARCH_CAFE_PROV =
 			"select * from CAFES, proveedores where CAFES.PROV_ID= ?"
-			+ " and CAFES.PROV_ID=proveedores.PROV_ID";
-	private static final String SEARCH_PROV =
+			+ " and CAFES.PROV_ID=proveedores.PROV_ID";*/
+	private static final String SEARCH_CAFE_BY_PROV =
 			"select * from CAFES where PROV_ID= ?";
+	private static final String SEARCH_PROV =
+			"select * from proveedores where PROV_ID= ?";
 	
 	/**
 	 * Metodo que muestra por pantalla los datos de la tabla cafes
@@ -132,22 +134,29 @@ public class CafesReto2 {
 	
 	public void buscarCafeProv(int provId) {
 		try (Connection con = new Utilidades1().getConnection()){
-			PreparedStatement stmt = con.prepareStatement(SEARCH_PROV);
+			PreparedStatement stmt = con.prepareStatement(SEARCH_CAFE_BY_PROV);
 			stmt.setInt(1, provId);	
-			ResultSet rs = stmt.executeQuery();
-						
-			if ( rs.next() ) {
-				System.out.println("- Cafés del proeveedor "+ provId+": \n"+
-						rs.getString("CAF_NOMBRE")+", "+
-						rs.getInt("PROV_ID")+", "+
-						rs.getFloat("PRECIO")+", "+
-						rs.getInt("VENTAS")+", "+
-						rs.getInt("TOTAL"));
-			}//if
-			else {
-				System.out.println("No se encuentra prov "+provId);
-			}
-
+			ResultSet rs = stmt.executeQuery();			
+			System.out.println("- Cafés del proeveedor "+ provId+":");
+			while ( rs.next() ) {
+				System.out.println(	rs.getString("CAF_NOMBRE")+", "+
+									rs.getInt("PROV_ID")+", "+
+									rs.getFloat("PRECIO")+", "+
+									rs.getInt("VENTAS")+", "+
+									rs.getInt("TOTAL"));
+			}//while
+			PreparedStatement stmt1 = con.prepareStatement(SEARCH_PROV);
+			stmt1.setInt(1, provId);	
+			ResultSet rs1 = stmt1.executeQuery();
+			System.out.println("- Datos del proeveedor "+ provId+":");
+			while ( rs1.next() ) {
+				System.out.println(	rs1.getInt("PROV_ID")+", "+
+									rs1.getString("PROV_NOMBRE")+", "+
+									rs1.getString("CALLE")+", "+
+									rs1.getString("CIUDAD")+", "+
+									rs1.getString("PAIS")+", "+
+									rs1.getInt("CP"));
+			}//while
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		} catch (SQLException sqle) {

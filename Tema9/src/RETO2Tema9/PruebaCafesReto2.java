@@ -15,13 +15,14 @@ public class PruebaCafesReto2 {
 	
 			
 			CafesReto2 miCafe = new CafesReto2();
-			//System.out.println("\nContenido de la tabla CAFES:");
-			//miCafe.verTabla();
+			System.out.println("Contenido de la tabla CAFES:");
+			miCafe.verTabla();
 			//miCafe.actualizarVentasCafe("Colombian", 888);
 			//miCafe.buscarCafe("Colombian");
 			//miCafe.borrarCafe("Espresso");
 			//miCafe.insertarCafe("Etiope", 150, 10, 0, 0);
 			//miCafe.insertarCafe("Costa Rica", 101, 12, 0, 0);
+			System.out.println();
 			miCafe.buscarCafeProv(101);
 	}
 }
