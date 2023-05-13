@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class gestorAgendaList {
+public class gestor_Agenda_BD {
 
 		private static Scanner entrada = new Scanner(System.in);
 		
@@ -19,21 +19,32 @@ public class gestorAgendaList {
 			while ( (opcion=menuPrincipal(true))!=0) {
 				switch (opcion) {
 				case 1:
+					System.out.println("LISTA DE CONTACTOS:");
 					agenda.listaContactos();
 					System.out.println();
 					break;
 				case 2:
+					System.out.println("NUEVOS DATOS:");
 					Contacto nuevo = Contacto.deTeclado(entrada);
 					if (nuevo!=null) agenda.escribeContacto(nuevo);
 					System.out.println();
 					break;
 				case 3:
-					Contacto borrar = Contacto.deTeclado(entrada);
+					System.out.println("CONTACTO QUE QUIERES MOFIFICAR:");
+					Contacto modificar = Contacto.deTecladoName(entrada);
+					System.out.println("NUEVOS DATOS:");
+					Contacto modificar2 = Contacto.deTeclado(entrada);
+					agenda.modificaContacto(
+							modificar2.getNombre(),modificar2.getTelefono(),modificar);
+					System.out.println();
+					break;
+				case 4:
+					System.out.println("CONTACTO QUE QUIERES BORRAR:");
+					Contacto borrar = Contacto.deTecladoName(entrada);
 					agenda.borraContacto(borrar); 
 					System.out.println();
-
-				}	
-			}
+				}//switch	
+			}//while
 
 			System.out.println("Bye bye ...");
 		} // main
@@ -47,14 +58,15 @@ public class gestorAgendaList {
 		} // menúPosición
 
 		public static int menuPrincipal(boolean opcionBorrar) {
-			final int MAX_OPTION = 3;
+			final int MAX_OPTION = 4;
 			int opcion;
 			String textoMenu = "MENÚ PRINCIPAL:\n"
 					+ "0. SALIR\n"
 					+ "1. LISTAR CONTACTOS ORDENADOS\n"
-					+ "2. NUEVO CONTACTO\n";
+					+ "2. NUEVO CONTACTO\n"
+					+ "3. MODIFICAR CONTACTO\n";
 			if (opcionBorrar) {
-				textoMenu += "3. BORRAR CONTACTO\n";
+				textoMenu += "4. BORRAR CONTACTO\n";
 			}
 			// Pide opción hasta que de una válida:
 			do {

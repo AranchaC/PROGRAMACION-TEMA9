@@ -19,7 +19,7 @@ import java.util.Properties;
  *  @version 1.0
  *  @license GPLv3
  */
-public class UtilidadesLibros {
+public class Utilidades1 {
 
 	public String dbms;
 	public String dbName;
@@ -32,10 +32,9 @@ public class UtilidadesLibros {
 	private int portNumber;
 	private Properties prop;
 	
-	private static final String PROPERTIES_FILE=
-			"mysql-propertiesLibrosCasa.xml";
+	private static final String PROPERTIES_FILE="mysql-properties2.xml";
 
-	public UtilidadesLibros()
+	public Utilidades1()
 			throws FileNotFoundException, IOException,
 			InvalidPropertiesFormatException {
 		super();

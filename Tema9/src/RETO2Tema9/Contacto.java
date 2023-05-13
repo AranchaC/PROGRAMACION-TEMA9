@@ -15,6 +15,10 @@ public class Contacto  {
 		this.telefono = telefono;
 	}
 
+	public Contacto(String nombre2) {
+		this.nombre = nombre2;
+	}
+
 	public String getTelefono() {
 		return telefono;
 	}
@@ -68,6 +72,13 @@ public class Contacto  {
 		if (telefono.isBlank()) return null;
 		return new Contacto(nombre,telefono);
 	}
+	
+	public static Contacto deTecladoName(Scanner entrada) {
+		System.out.print("Dame el nombre: ");
+		String nombre = entrada.nextLine();
+		if (nombre.isBlank()) return null;
+		return new Contacto(nombre);
+	}//deTecladoName
 
 	public static Contacto contactoFromCSV(String linea) {
 		String nombre, telef;

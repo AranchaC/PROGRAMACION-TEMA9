@@ -39,21 +39,13 @@ public class Cafes {
 	 * @throws SQLException
 	 */
 	public void verTabla() {
-		/* Conexi�n a la Base de Datos */
 		Connection con = null;
-		/* Sentencia sql */
 		Statement stmt = null;
-		/* Conjunto de Resultados a obtener de la sentencia sql */
 		ResultSet rs = null;
 		try {
 			con = new Utilidades1().getConnection();
-			// Creaci�n de la sentencia
 			stmt = con.createStatement();
-			// Ejecuci�n de la consulta y obtenci�n de resultados en un
-			// ResultSet
 			rs = stmt.executeQuery(SELECT_CAFES_QUERY);
-
-			// Recuperaci�n de los datos del ResultSet
 			while (rs.next()) {
 				String coffeeName = rs.getString("CAF_NOMBRE");
 				int supplierID = rs.getInt("PROV_ID");

@@ -30,13 +30,18 @@ public class BD_Agenda  {
 	private static final String INSERT_QUERY = 
 			"insert into contactos values (?,?)";
 	private static final String DELETE_QUERY = 
-			"delete from contactos where nombre = ? and telefono1 = ?";
+			"delete from contactos where nombre = ? ";
 	private static final String UPDATE_QUERY = 
-			"update contactos set nombre = ?, telefono = ? where nombre = ?";
-
+			"update contactos set nombre = ?, telefono1 = ? where nombre = ?";
+	
+	String user = "arancha";
+	String pass = "arancha123*";
+	String URL_CONNECTION = 
+			"jdbc:mysql://localhost:3306/agenda";
+		
 	public void listaContactos() {		
 		try (Connection con = DriverManager.getConnection
-				("jdbc:mysql://localhost:3306/agenda","arancha2","arancha2*DAW")) {
+				(URL_CONNECTION,user,pass)) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_QUERY);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -50,8 +55,7 @@ public class BD_Agenda  {
 	}//leerContactos
 	
 	public void escribeContacto(Contacto contacto) {
-		try (Connection con = DriverManager.getConnection
-				("jdbc:mysql://localhost:3306/agenda","arancha2","arancha2*DAW")) {
+		try (Connection con = DriverManager.getConnection(URL_CONNECTION,user,pass)) {
 			PreparedStatement stmt = con.prepareStatement(INSERT_QUERY);
 			stmt.setString(1, contacto.getNombre());
 			stmt.setString(2, contacto.getTelefono());
@@ -65,15 +69,29 @@ public class BD_Agenda  {
 	
 	public void borraContacto(Contacto contacto) {
 		try (Connection con = DriverManager.getConnection
-				("jdbc:mysql://localhost:3306/agenda","arancha2","arancha2*DAW")) {
+				(URL_CONNECTION,user,pass)) {
 			PreparedStatement stmt = con.prepareStatement(DELETE_QUERY);
 			stmt.setString(1, contacto.getNombre());
-			stmt.setString(2, contacto.getTelefono());
 			stmt.executeUpdate();
 			System.out.println("Contacto borrado: "+ contacto.getNombre());
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
 	}//borraContacto
+	
+	public void modificaContacto (String nombre, String telefono, Contacto contacto) {
+		try (Connection con = DriverManager.getConnection
+				(URL_CONNECTION,user,pass)) {
+			PreparedStatement stmt = con.prepareStatement(UPDATE_QUERY);
+			stmt.setString(1, nombre);
+			stmt.setString(2, telefono);
+			stmt.setString(3, contacto.getNombre());
+			stmt.executeUpdate();
+			System.out.println("Contacto modificado: "+contacto.getNombre());
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}//modificaContacto
+	
 
 }
