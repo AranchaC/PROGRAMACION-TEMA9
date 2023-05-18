@@ -20,7 +20,7 @@ import java.sql.Statement;
 
 public class CafesReto2 {
 	private static final String SELECT_CAFES_QUERY = 
-			"select CAF_NOMBRE, PROV_ID, PRECIO, VENTAS, TOTAL from CAFES";
+			"select * from CAFES";
 	private static final String UPDATE_VENTAS_CAFE = 
 			"update CAFES set VENTAS = ? where CAF_NOMBRE = ?";
 	private static final String SEARCH_CAFE = 
@@ -37,12 +37,7 @@ public class CafesReto2 {
 	private static final String SEARCH_PROV =
 			"select * from proveedores where PROV_ID= ?";
 	
-	/**
-	 * Metodo que muestra por pantalla los datos de la tabla cafes
-	 * 
-	 * @param con
-	 * @throws SQLException
-	 */
+	
 	public void verTabla() {
 		try (Connection con = new Utilidades1().getConnection()) {
 			PreparedStatement stmt = con.prepareStatement(SELECT_CAFES_QUERY);
@@ -89,7 +84,7 @@ public class CafesReto2 {
 						rs.getInt("PROV_ID")+", "+
 						rs.getFloat("PRECIO")+", "+
 						rs.getInt("VENTAS")+", "+
-						rs.getInt("TOTAL")+", ");
+						rs.getInt("TOTAL"));
 			}//if
 			else {
 				System.out.println("No se encuentra el café: "+ cafe);

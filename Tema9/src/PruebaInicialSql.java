@@ -8,7 +8,8 @@ public class PruebaInicialSql {
 	public static void main(String[] args) {
 		try {
 			//Class.forName("org.mariadb.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ropa", "arancha1",
+			Connection connection = DriverManager.getConnection
+					("jdbc:mysql://localhost:3306/ropa", "arancha1",
 					"arancha1*");
 			Statement statement = connection.createStatement();
 			ResultSet res = statement.executeQuery("select * from persona;");
