@@ -32,7 +32,7 @@ public class Utilidades1 {
 	private int portNumber;
 	private Properties prop;
 	
-	private static final String PROPERTIES_FILE="mysql-properties2.xml";
+	private static final String PROPERTIES_FILE="mysql-properties.xml";
 
 	public Utilidades1()
 			throws FileNotFoundException, IOException,
