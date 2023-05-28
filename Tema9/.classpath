@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/usr/share/maven-repo/org/mariadb/jdbc/mariadb-java-client/debian/mariadb-java-client-debian.jar"/>
+	<classpathentry kind="lib" path="C:/Users/savia/Downloads/mariadb-java-client-2.7.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
