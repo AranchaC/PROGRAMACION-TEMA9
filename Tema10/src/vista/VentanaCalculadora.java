@@ -1,5 +1,6 @@
 package vista;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import control.ControladorCalculadora;
 
@@ -57,6 +58,7 @@ public class VentanaCalculadora extends JFrame {
 				//pongo color al fondo y a la C:
 				botones[11].setBackground(Color.red);
 				botones[11].setForeground(Color.white);
+				//botones[11].
 			botones[12] = new JButton("=");
 			botones[13]=new JButton("+");
 			//añado botones -, *, /
@@ -65,10 +67,12 @@ public class VentanaCalculadora extends JFrame {
 			botones[16] = new JButton("/");
 
 			
-			display.setBounds(50,20,205,50);
+			//display.setBounds(50,20,205,50);
 			//añado margen interno al campo de texto
 			display.setMargin(new Insets(10,10,10,10));
-			
+
+
+			/*
 			botones[1].setBounds(10,200,50,50);
 			botones[2].setBounds(60,200,50,50);
 			botones[3].setBounds(110,200,50,50);
@@ -86,7 +90,7 @@ public class VentanaCalculadora extends JFrame {
 			botones[10].setBounds(60,250,50,50);
 			botones[11].setBounds(110,250,50,50);
 			botones[12].setBounds(160,250,50,50);
-				
+			*/	
 			
 			panel.add(display, BorderLayout.NORTH);
 			panel.setLocation(20, 15);
